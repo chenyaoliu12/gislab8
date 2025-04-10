@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> GeoTag Interactive Mapping Exercise</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+</head>
+<style>
+
+.sidebar {
+  position: absolute;
+  left: 0px;
+  width: 250px;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  padding: 20px;
+  font-size: 16px;
+  border: solid;
+  background-color: #5e9c6c;
+}
+.main-heading {
+    font-size: 15px;
+}
+</style>
+<body>
+  <div class="sidebar">
+  <font color="MidnightBlue"><center><h2 id="main-heading" >GeoTag Mapping</h2></center></font>
+  <div>
+
+<div class="row">
+  <div class="column">
+    <center> <img src="images/upenn.jpg" alt="Penn Logo" style="width:80%"> </center>
+
+
+<h1> University of Pennsylvania </h1>
+<h2> College Houses </h2>
+<h3> Gregory, Class of 1925 Building </h3>   
+
+    <div id="map" style=" position: fixed; right: 0; left: 300px; top: 0; bottom: 0 "></div>
+
+    <!-- JS IMPORTS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src= "http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src= "setup.js"></script>
+    <script src= "chenyao.js"></script>  
+
+    <script>
+
+// Create a style variable
+    var myStyle = {
+    radius: 5,
+    fillColor: "#ff7800",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.7
+};
+
+//Load in geojson
+    var chenyao  =   L.geoJSON(chenyao, {
+          style: myStyle
+        }).bindPopup(function (layer) {
+       return "" + layer.feature.properties.name
+    }).addTo(map).bringToBack();
+
+
+var polygon = L.polygon([
+    [39.95256608409625,-75.20280593621091],
+    [39.952562650017796,-75.20281153591169],
+    [39.952439881594444,-75.20283841447615],
+    [39.952436232879336,-75.20283449468579],
+    [39.95242807692648,-75.20277429790156],
+    [39.952423569689216,-75.20277009812544],
+    [39.952418418560995,-75.20277177803585],
+    [39.952414340583374,-75.20276757826045],
+    [39.95240596999801,-75.20270654152098],
+    [39.95240897482404,-75.20270066183511],
+    [39.95241412595297,-75.20269982187989],
+    [39.95241713077863,-75.20269478214921],
+    [39.952410262606065,-75.20263794518517],
+    [39.95240596999801,-75.20263486535005],
+    [39.952401033498404,-75.2026365452598],
+    [39.95239674088981,-75.2026312255441],
+    [39.95238138956256,-75.20250909887885],
+    [39.952384023952305,-75.20250411587273],
+    [39.95239166368066,-75.20250205393896],
+    [39.952393507753214,-75.20249672727809],
+    [39.952385736305246,-75.20244002410595],
+    [39.952381521282376,-75.20243452561678],
+    [39.95237322295506,-75.2024364157223],
+    [39.95236887621152,-75.20243212002742],
+    [39.9523608520897,-75.2023656449133],
+    [39.95236410042935,-75.20235905332181],
+    [39.952370597108256,-75.20235764083839],
+    [39.95237330405794,-75.2023529325589],
+    [39.95236590506224,-75.20229596237664],
+              [39.952368972938814,
+                -75.20229031244116
+                
+              ],
+              [   39.95249582263821,
+                -75.20226269674518
+             
+              ],
+              [39.952499806370184,
+                -75.20226655242067
+                
+              ],
+              [39.952517358774486,
+                -75.20240132282024
+                
+              ],
+              [39.952513889072804,
+                -75.2024070225142
+                
+              ],
+              [39.95250900578887,
+                -75.20240819598035
+                
+              ],
+              [39.95250643563895,
+                -75.20241272220817
+                
+              ],
+              [39.95251324653506,
+                -75.20246636638879
+                
+              ],
+              [39.95251748728165,
+                -75.20247022206426
+                
+              ],
+              [39.952521471013,
+                -75.20246904859727
+                
+              ],
+              [39.952542634338414,
+                -75.20260424722494
+                
+              ],
+              [39.95253888155298,
+                -75.20260979547255
+                
+              ],
+              [39.95253362765283,
+                -75.20261012184008
+                
+              ],
+              [39.9525308756094,
+                -75.20261567008855
+                
+              ],
+              [39.95253838118151,
+                -75.20267213166903
+                
+              ],
+              [ 39.95254188378118,
+                -75.20267572171133
+               
+              ],
+              [39.95254538638136,
+                -75.2026760480789
+                
+              ],
+              [39.95254938935213,
+                -75.2026789853869
+                
+              ],
+    [39.95256608409625,-75.20280593621091]
+]).addTo(map);
+
+// Add a marker
+L.marker([39.952287, -75.197164]).addTo(map);
+    </script>
+
+</body>
+</html>
